@@ -30,15 +30,9 @@ export function App() {
         setEndereco((prev) => [...prev, dados])
         formulario.reset()
     }
-
-    async function buscaCep() {
-        const formCep = watch('cep')
-        if (formCep.length !== 8) return;
-    }
-
-    const response = await fetch(`https://viacep.com.br/ws/${formCep}/json/`)
-    const dadosResponse = await response.json()
-    console log('CEP')
+ 
+    const erro = formulario.formState.errors
+    
     return (
         <div className="min-h-screen bg-pink-100 px-4 py-8">
             <div className="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-xl shadow-sm">
