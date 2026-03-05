@@ -31,8 +31,14 @@ export function App() {
         formulario.reset()
     }
 
-    const erro = formulario.formState.errors
+    async function buscaCep() {
+        const formCep = watch('cep')
+        if (formCep.length !== 8) return;
+    }
 
+    const response = await fetch(`https://viacep.com.br/ws/${formCep}/json/`)
+    const dadosResponse = await response.json()
+    console log('CEP')
     return (
         <div className="min-h-screen bg-pink-100 px-4 py-8">
             <div className="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-xl shadow-sm">
@@ -56,7 +62,7 @@ export function App() {
                   focus:outline-none focus:ring-2
                   ${erro.cpf
                                     ? "border-red-500 focus:ring-red-500"
-                                    : "border-gray-300 focus:ring-green-200"
+                                    : "border-gray-300 focus:ring-pink-100"
                                 }`}
                             inputMode="numeric"
                             {...formulario.register("cpf")}
@@ -77,7 +83,7 @@ export function App() {
                   focus:outline-none focus:ring-2
                   ${erro.nome
                                     ? "border-red-500 focus:ring-red-500"
-                                    : "border-gray-300 focus:ring-green-200"
+                                    : "border-gray-300 focus:ring-pink-100"
                                 }`}
                             inputMode="numeric"
                             {...formulario.register("nome")}
@@ -98,7 +104,7 @@ export function App() {
                   focus:outline-none focus:ring-2
                   ${erro.cep
                                     ? "border-red-500 focus:ring-red-500"
-                                    : "border-gray-300 focus:ring-green-200"
+                                    : "border-gray-300 focus:ring-pink-100"
                                 }`}
                             inputMode="numeric"
                             {...formulario.register("cep")}
@@ -120,7 +126,7 @@ export function App() {
                   focus:outline-none focus:ring-2
                   ${erro.rua
                                     ? "border-red-500 focus:ring-red-500"
-                                    : "border-gray-300  focus:ring-green-200"
+                                    : "border-gray-300  focus:ring-pink-100"
                                 }`}
                             {...formulario.register("rua")}
                         />
@@ -141,7 +147,7 @@ export function App() {
                   focus:outline-none focus:ring-2
                   ${erro.numero
                                     ? "border-red-500 focus:ring-red-500"
-                                    : "border-gray-300 focus:ring-green-200"
+                                    : "border-gray-300 focus:ring-pink-100"
                                 }`}
                             {...formulario.register("numero")}
                         />
@@ -161,7 +167,7 @@ export function App() {
                   focus:outline-none focus:ring-2
                   ${erro.complemento
                                     ? "border-red-500 focus:ring-red-500"
-                                    : "border-gray-300 focus:ring-green-200"
+                                    : "border-gray-300 focus:ring-pink-100"
                                 }`}
                             inputMode="numeric"
                             {...formulario.register("complemento")}
@@ -183,7 +189,7 @@ export function App() {
                   focus:outline-none focus:ring-2
                   ${erro.bairro
                                     ? "border-red-500 focus:ring-red-500"
-                                    : "border-gray-300 focus:ring-green-200"
+                                    : "border-gray-300 focus:ring-pink-100"
                                 }`}
                             {...formulario.register("bairro")}
                         />
@@ -203,7 +209,7 @@ export function App() {
                   focus:outline-none focus:ring-2
                   ${erro.cidade
                                     ? "border-red-500 focus:ring-red-500"
-                                    : "border-gray-300 focus:ring-green-200"
+                                    : "border-gray-300 focus:ring-pink-100"
                                 }`}
                             {...formulario.register("cidade")}
                         />
@@ -224,7 +230,7 @@ export function App() {
                   focus:outline-none focus:ring-2
                   ${erro.estado
                                     ? "border-red-500 focus:ring-red-500"
-                                    : "border-gray-300 focus:ring-green-200"
+                                    : "border-gray-300 focus:ring-pink-100"
                                 }`}
                             maxLength={2}
                             {...formulario.register("estado")}
